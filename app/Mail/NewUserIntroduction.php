@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -14,12 +15,15 @@ class NewUserIntroduction extends Mailable
     use Queueable, SerializesModels;
 
     public $subject = '新しいユーザーが追加されました！';
+    public User $toUser;
+    public User $newUser;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $toUser, User $newUser)
     {
-        //
+        $this->toUser = $toUser;
+        $this->newUser = $newUser;
     }
 
     /**
@@ -33,18 +37,13 @@ class NewUserIntroduction extends Mailable
         );
     }
 
-    // public function build()
-    // {
-    //     return $this->view('email.new_user_introduction');
-    // }
-
     /**
      * Get the message content definition.
      */
     public function content(): Content
     {
         return new Content(
-            html: 'email.new_user_introduction',
+            markdown: 'email.new_user_introduction',
         );
     }
 
