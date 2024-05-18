@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <link href="resources/css/app.css" rel="stylesheet"> --}}
     <title>{{ $title ?? 'つぶやきアプリ' }}</title>
+    @stack('css')
 </head>
 <body class="bg-gray-50">
     {{ $slot }}
