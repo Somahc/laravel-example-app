@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('sample-command')->everyMinute()->emailOutputTo('info@example.com');
+        $schedule->command('mail:send-daily-tweet-count-mail')->dailyAt('11:00');
     }
 
     /**
